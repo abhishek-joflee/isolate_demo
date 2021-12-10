@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // STATE VARIABLE FOR UPDATING UI
   Widget result = const Text("Result will be here");
-
+  int number = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // INPUT NUMBER
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.7,
+              child: TextField(
+                decoration: const InputDecoration(label: Text("Huge number")),
+                onChanged: (val) {
+                  number = int.parse(val);
+                },
+              ),
+            ),
             // STATE VARIABLE
             result,
 
@@ -52,18 +62,25 @@ class _MyHomePageState extends State<MyHomePage> {
             TextButton(
               child: const Text("Compute"),
               onPressed: () async {
+                int before = DateTime.now().microsecondsSinceEpoch;
                 // SET LOADER
                 setState(() {
                   result = const CircularProgressIndicator();
                 });
 
                 // CALL HEAVY COMPUTATION FUNCTION
-                final sum =
-                    await compute(computationallyExpensiveTask, 60000000);
+                final sum = await compute(computationallyExpensiveTask, number);
 
                 // UPDATE UI WITH NEW RESULT
                 setState(() {
-                  result = Text(sum.toString());
+                  int after = DateTime.now().microsecondsSinceEpoch;
+                  result = Column(
+                    children: [
+                      Text(sum.toString()),
+                      Text("elapsed: " +
+                          ((after - before) / 1000000).toString()),
+                    ],
+                  );
                 });
               },
             ),
