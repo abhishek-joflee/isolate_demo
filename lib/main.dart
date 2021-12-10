@@ -30,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // STATE VARIABLE FOR UPDATING UI
   Widget result = const Text("Result will be here");
 
   @override
@@ -44,15 +45,23 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // STATE VARIABLE
             result,
+
+            // BUTTON
             TextButton(
               child: const Text("Compute"),
               onPressed: () async {
+                // SET LOADER
                 setState(() {
                   result = const CircularProgressIndicator();
                 });
+
+                // CALL HEAVY COMPUTATION FUNCTION
                 final sum =
                     await compute(computationallyExpensiveTask, 60000000);
+
+                // UPDATE UI WITH NEW RESULT
                 setState(() {
                   result = Text(sum.toString());
                 });
@@ -65,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+// HEAVY COMPUTATION FUNCTION
 int computationallyExpensiveTask(int value) {
   var sum = 0;
   for (var i = 0; i <= value; i++) {
