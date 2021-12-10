@@ -15,4 +15,6 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-![Smiling Leo Perfect GIF](https://user-images.githubusercontent.com/90181186/145554103-1d3a1260-08ff-4509-815d-2fe81e5026e1.gif)
+
+https://user-images.githubusercontent.com/90181186/145556944-c9e75b79-8e96-47d9-8374-0f37b2f52e0e.mp4
+
